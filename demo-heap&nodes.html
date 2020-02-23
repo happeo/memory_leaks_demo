@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script>
+      var x = [];
+
+      function grow() {
+        for (var i = 0; i < 10000; i++) {
+          // native memory - DOM
+          document.body.appendChild(document.createElement("div"));
+        }
+        // heap memory - js objects
+        x.push(new Array(1000000).join("x"));
+      }
+
+      window.addEventListener("click", grow);
+    </script>
+  </head>
+  <body>
+    <h2>Demo - heap & nodes</h2>
+  </body>
+</html>

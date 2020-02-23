@@ -1,0 +1,15 @@
+window.addEventListener("resize", this.someMethod, false);
+
+setTimeout(() => {
+   this.someMethod();
+ }, 10 *1000);
+
+
+fetch("www.happeo.com").then(() => {
+  this.someMethod();
+  this.setState({
+    text: "but you can join Happeo and make the world better/happier"
+  });
+});
+
+track by

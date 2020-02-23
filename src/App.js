@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import styled from "styled-components";
+import LeaksEverywhere from "./LeaksEverywhere";
 
-function App() {
+const getRandomColor = () => {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+const App = () => {
+  const [showColumn, setShowColumn] = useState(false);
+  const [color, setColor] = useState("white");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex" }}>
+      <Column bgColor={color}>
+        <h2>Column 1</h2>
+      </Column>
+      {showColumn && (
+        <Column>
+          <h2>Column 2</h2>
+          <LeaksEverywhere callback={() => setColor(getRandomColor())} />
+        </Column>
+      )}
+      <button
+        style={{ fontSize: "18px", backgroundColor: "yellow" }}
+        onClick={() => setShowColumn(oldVal => !oldVal)}
+      >
+        {showColumn ? "hide" : "show"}
+      </button>
     </div>
   );
-}
+};
+
+const Column = styled.div`
+  flex-grow: 1;
+  background-color: ${({ bgColor }) => bgColor || "white"};
+`;
 
 export default App;
