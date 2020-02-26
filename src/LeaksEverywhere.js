@@ -27,9 +27,7 @@ class LeaksEverywhere extends React.Component {
           text: "but you can join Happeo and make the world better/happier"
         });
       })
-      .catch(err => {
-        err.isCanceled && console.error("No harm done");
-      });
+      .catch(err => err.isCanceled && console.log("all good here"));
   };
 
   componentWillUnmount = () => {
